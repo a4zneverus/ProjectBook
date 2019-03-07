@@ -21,7 +21,7 @@
   </style>
   <body>
 <?php
- include("connect.inc");
+ include("connect.php");
  $o_id =  @$_GET['o_id'];
 ?>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="1" class="table table-bordered">
@@ -35,7 +35,7 @@
 				<td width="105" align="center" class="abc"><strong>จำนวน</strong></td>
 			</tr>
 			<?php
-				 include("connect.inc");
+				 include("connect.php");
 				$strSQL = "SELECT * FROM order_detail where o_id=$o_id";
 				$objQuery =mysqli_query($conn, $strSQL);
 				$num = mysqli_num_rows($objQuery);

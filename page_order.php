@@ -23,7 +23,7 @@ padding: 4px;
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="style.css" rel="stylesheet" type="text/css"/>
-  <?php include("connect.inc"); ?>
+  <?php include("connect.php"); ?>
   <table width="1000" border="0" align="center" cellpadding="0" cellspacing="1" class="table table-bordered">
   	<br><br><tr>
   		<td colspan="6" align="right" bgcolor="#F7F7F7" class="ccc"><center><b>ข้อมูลการสั่งซื้อสินค้า<b><center><br>
@@ -38,7 +38,7 @@ padding: 4px;
   				<td width="90" align="center" class="wa"><strong>แสดงออเดอร์</strong></td>
   			</tr>
   			<?php
-  				include("connect.inc");
+  				include("connect.php");
   				$strSQL = "SELECT * FROM order_head order by o_id desc";
   				$objQuery =mysqli_query($conn, $strSQL);
   				$num = mysqli_num_rows($objQuery);
