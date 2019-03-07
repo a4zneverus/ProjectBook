@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Product List</title>
+</head>
+<body>
+<?php
+session_start();
+$userid = $_SESSION["UserID"];
+if($_SESSION["UserID"]==""){
+	echo "Please Login!";
+	exit();
+}
+	if($_SESSION["Status"] !="USER")
+	{
+		echo "This page for User only!";
+		exit();
+	}
+	 include("connect.inc");
+	$strSQL ="SELECT * FROM member WHERE UserID='".$_SESSION["UserID"]."'";
+	$objQuery =mysqli_query($conn, $strSQL);
+	$objResult = mysqli_fetch_array($objQuery);
+?>
+<br>
+<br>
+<body>
+	<h3><center>Welcome to User Page!</center></h3>
+	 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
+  <tr>
+    <td width="25%" ><img src="img/book.jpg" width="48%" /></td>
+   <td width="200" align="center" ><h2>PRODUCT</h2></td>	
+   <td width="44" align="center" > </td>
+   <td width="100" align="center" >Welcome!!! คุณ<?php echo  "    ".$objResult['Username']."          "; ?><a href="logout.php">Logout</a></div></td>
+  </tr>
+</table>
+
+	
+
+<table width="600" border="1" align="center" bordercolor="#666666">
+  <tr>
+    <td width="91" align="center" bgcolor="#CCCCCC"><strong>ภาพ</strong></td>
+    <td width="200" align="center" bgcolor="#CCCCCC"><strong>ชื่อหนังสือ</strong></td>
+    <td width="44" align="center" bgcolor="#CCCCCC"><strong>ราคา</strong></td>
+    <td width="100" align="center" bgcolor="#CCCCCC"><strong>รายละเอียดสินค้า</strong></td>
+  </tr>  
+  <?php
+  //connect db
+  include("connect.inc");
+  $sql = "select * from product order by p_id";  
+  $result = mysqli_query($conn, $sql);
+  while($row = mysqli_fetch_array($result))
+  {
+  	echo "<tr>";
+	echo "<td align='center'><img src='img/" . $row["p_pic"] ." ' width='80'></td>";
+	echo "<td align='left'>" . $row["p_name"] . "</td>";
+    echo "<td align='center'>" .number_format($row["p_price"],2). "</td>";
+    echo "<td align='center'><a href='product_detail.php?p_id=$row[p_id]'>คลิก</a></td>";
+	echo "</tr>";
+  }
+  ?>
+</table>

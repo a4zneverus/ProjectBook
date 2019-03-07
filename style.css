@@ -1,0 +1,39 @@
+.f1{
+  color: white;
+}
+.f2{
+  color: white;
+  text-decoration: underline;
+}
+.f3{
+  color: #ff99cc;
+}
+.b1 {
+    width: 400px;
+    padding: 5px;
+    border: 3px solid #ff99cc;
+    margin: 0;
+}
+body {
+    -webkit-animation: colorchange 40s infinite;
+    animation: colorchange 40s infinite;
+}
+
+
+@-webkit-keyframes colorchange {
+
+     0%  {background: #ffd9cc;}
+    25%  {background: #ffffff;}
+    50%  {background: #ffd9cc;}
+    75%  {background: #ffffff}
+    100% {background: #ffd9cc;}
+}
+
+
+@keyframes colorchange {
+     0%  {background: #ffd9cc;}
+    25%  {background: #ffffff;}
+    50%  {background: #ffd9cc;}
+    75%  {background: #ffffff;}
+    100% {background: #ffd9cc;}
+}
