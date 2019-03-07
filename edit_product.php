@@ -23,7 +23,7 @@ function check() {
     addprd.p_price.focus()
     return false
   }
-  else if (addprd.p_img.value == '') {
+  else if (addprd.p_img.value == '' && addprd.p_checkimg.value == '' ) {
     alert('กรุณาใส่รูปสินค้า')
     addprd.p_img.focus()
     return false
@@ -37,7 +37,7 @@ function check() {
   <?php
   $_SESSION['id']=$_REQUEST['p_id'];
   $Mid = $_REQUEST['p_id'];
-  include("connect.inc");// เรียกใช้งาน ConnectDB.php
+  include "connect.php";
   $sql = "SELECT * FROM product WHERE p_id='$Mid'";
   $result = mysqli_query($conn,$sql);
   $obresult = mysqli_fetch_array($result);
@@ -54,8 +54,8 @@ function check() {
       <form action="check_editproduct.php" method="POST" enctype="multipart/form-data"  name="addprd" class="form-horizontal" id="addprd" onsubmit="return check();">
         <div class="form-group">
           <div class="col-sm-12">
-            <p> ชื่อสินค้า</p>
-            <input type="text"  name="ai" class="form-control" value="<?php echo $obresult['p_id']?>" />
+            <p> รหัสสินค้า</p>
+            <input type="text"  name="ai" class="form-control" value="<?php echo $obresult['p_id']?>" readonly="1"/>
           </div>
         </div>
         <div class="form-group">
@@ -85,6 +85,7 @@ function check() {
             <p> ภาพสินค้า </p>
             <input type="file" name="p_img" class="form-control" />
             <?php echo $obresult['p_pic']?>
+            <input type="hidden" name="p_checkimg" value="<?= !empty($obresult['p_pic']) ? $obresult['p_pic'] : '' ?>"/>
           </div>
         </div>
         <div class="form-group">
